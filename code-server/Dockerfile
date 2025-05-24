@@ -24,4 +24,4 @@ ENV AUTH=code001
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-CMD /usr/bin/code-server --bind-addr 0.0.0.0:"${PORT}" --app-name code-server --disable-telemetry --auth "${AUTH}" ~/code-serve
+CMD /usr/bin/code-server --bind-addr 0.0.0.0:"${PORT}" --app-name code-server --disable-telemetry --auth "${AUTH}" ~/code-server
