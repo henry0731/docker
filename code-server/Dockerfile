@@ -1,4 +1,4 @@
-FROM henry011/debian
+FROM henry0731/debian
 
 COPY code-server/docker-entrypoint.sh /usr/bin/entrypoint.sh
 COPY code-server/install.sh /tmp/install.sh
