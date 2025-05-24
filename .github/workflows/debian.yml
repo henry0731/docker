@@ -5,13 +5,12 @@ on:
     branches: [ master ]
     paths:
       - 'debian'
+      - '**/debian.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    permissions:
-      packages: write
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -40,5 +39,5 @@ jobs:
           file: ./debian
           platforms: linux/amd64,linux/arm64
           tags: |
-            # ghcr.io/henry0731/debian:latest
+            ghcr.io/henry0731/debian:latest
             henry0731/debian:latest
