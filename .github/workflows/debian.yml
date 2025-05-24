@@ -10,6 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      packages: write
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
