@@ -5,7 +5,7 @@ COPY code-server/install.sh /tmp/install.sh
 
 RUN apt-get update && apt-get install --no-install-recommends ca-certificates openssh-client procps zsh git unzip vim wget curl net-tools iputils-ping neofetch python3 python3.11-venv -y
 
-RUN curl -fsSL https://code-server.dev/install.sh | sh -s -- --dry-run \
+RUN curl -fsSL https://code-server.dev/install.sh | sh \
     && code-server --install-extension redhat.vscode-yaml \
     && code-server --install-extension dbaeumer.vscode-eslint \
     && code-server --install-extension waderyan.gitblame \
