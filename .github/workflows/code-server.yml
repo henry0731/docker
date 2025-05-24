@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-      - 'code-server'
+      - 'code-server/**'
       - '**/code-server.yml'
 
 jobs:
