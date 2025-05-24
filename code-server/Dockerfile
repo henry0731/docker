@@ -20,8 +20,8 @@ RUN curl -fsSL https://code-server.dev/install.sh | sh \
 RUN chmod +x /tmp/install.sh && chmod +x entrypoint.sh && /bin/bash -c '/tmp/install.sh'
 
 ENV PORT=9091
-ENV AUTH=code001
+ENV PASSWORD=code001
 
 ENTRYPOINT ["entrypoint.sh"]
 
-CMD code-server --bind-addr 0.0.0.0:"${PORT}" --app-name code-server --disable-telemetry --auth "${AUTH}" ~/code-server
+CMD code-server --bind-addr 0.0.0.0:"${PORT}" --app-name code-server --disable-telemetry --auth "${PASSWORD}" ~/code-server

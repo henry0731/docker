@@ -39,4 +39,4 @@ jobs:
           file: ./code-server/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: |
-            henry0731/code-server:latest
+            henry0731/code-ide:latest
