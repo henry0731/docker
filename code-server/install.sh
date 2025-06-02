@@ -68,8 +68,7 @@ cat>~/.local/share/code-server/User/argv.json<<EOF
 { "locale":"zh-CN" }
 EOF
 
-mkdir -p /workspace/.vscode/
-cat>/workspace/.vscode/setting.json<<EOF
+cat>~/.local/share/code-server/User/setting.json<<EOF
 {
     "terminal.integrated.fontSize": 18,
     "workbench.startupEditor": "none",
@@ -129,6 +128,8 @@ cat>/workspace/.vscode/setting.json<<EOF
     "prettier.endOfLine": "auto"
 }
 EOF
+
+mkdir -p /workspace/.vscode/
 
 cd /workspace
 python3 -m venv .venv
