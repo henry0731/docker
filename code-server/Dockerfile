@@ -1,6 +1,6 @@
 FROM henry0731/debian
 
-COPY code-server/docker-entrypoint.sh entrypoint.sh
+# COPY code-server/docker-entrypoint.sh entrypoint.sh
 COPY code-server/install.sh /tmp/install.sh
 
 RUN apt-get update && apt-get install --no-install-recommends ca-certificates openssh-client procps zsh git unzip vim wget curl net-tools iputils-ping neofetch python3 python3.11-venv -y
@@ -23,6 +23,6 @@ RUN chmod +x /tmp/install.sh && chmod +x entrypoint.sh && /bin/bash -c '/tmp/ins
 ENV PORT=9091
 ENV PASSWORD=code001
 
-ENTRYPOINT ["entrypoint.sh"]
+# ENTRYPOINT ["entrypoint.sh"]
 
 CMD code-server --bind-addr 0.0.0.0:"${PORT}" --app-name code-server --disable-telemetry --auth "${PASSWORD}" ~/workspace
