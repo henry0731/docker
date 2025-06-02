@@ -128,7 +128,11 @@ EOF
 
 mkdir -p ~/workspace/.vscode/
 
-cd ~/workspace && python3 -m venv .venv
+cd ~/workspace
+python3 -m venv .venv
+. .venv/bin/activate
+pip install playwright sanic requests aioredis aiohttp pysocks python-dotenv 
+playwright install chrome
 
 apt-get purge make gcc g++ -y
 apt-get autoremove -y
