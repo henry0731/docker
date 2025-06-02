@@ -18,7 +18,7 @@ RUN curl -fsSL https://code-server.dev/install.sh | sh \
     && code-server --install-extension ms-ceintl.vscode-language-pack-zh-hans \
     && echo done
 
-RUN chmod +x /tmp/install.sh && chmod +x entrypoint.sh && /bin/bash -c '/tmp/install.sh'
+RUN chmod +x /tmp/install.sh && /bin/bash -c '/tmp/install.sh'
 
 ENV PORT=9091
 ENV PASSWORD=code001
