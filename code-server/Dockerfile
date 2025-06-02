@@ -25,4 +25,4 @@ ENV PASSWORD=code001
 
 # ENTRYPOINT ["entrypoint.sh"]
 
-CMD code-server --bind-addr 0.0.0.0:"${PORT}" --app-name code-server --disable-telemetry --auth password ~/workspace
+CMD code-server --bind-addr 0.0.0.0:"${PORT}" --app-name code-server --disable-telemetry --auth password /workspace

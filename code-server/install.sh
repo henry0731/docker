@@ -28,7 +28,7 @@ echo 'export SHELL=/bin/zsh' >>~/.zshrc
 echo 'DRACULA_DISPLAY_CONTEXT=1' >> ~/.zshrc
 echo 'DRACULA_DISPLAY_FULL_CWD=1' >> ~/.zshrc
 echo 'DRACULA_DISPLAY_GIT=1' >> ~/.zshrc
-echo 'export GOPATH=/data/go' >> ~/.zshrc
+echo 'export GOPATH=~/.local/share/go' >> ~/.zshrc
 echo 'export DENO_DEPLOY_TOKEN=""' >>~/.zshrc
 echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.zshrc
 echo 'export PATH=/root/.deno/bin:$PATH' >> ~/.zshrc
@@ -65,7 +65,8 @@ cat>~/.local/share/code-server/User/argv.json<<EOF
 { "locale":"zh-CN" }
 EOF
 
-cat>~/.local/share/code-server/User/settings.json<<EOF
+mkdir -p /workspace/.vscode/
+cat>/workspace/.vscode/settings.json<<EOF
 {
     "terminal.integrated.fontSize": 18,
     "workbench.startupEditor": "none",
@@ -126,9 +127,7 @@ cat>~/.local/share/code-server/User/settings.json<<EOF
 }
 EOF
 
-mkdir -p ~/workspace/.vscode/
-
-cd ~/workspace
+cd /workspace
 python3 -m venv .venv
 # . .venv/bin/activate
 # pip install playwright sanic requests aioredis aiohttp pysocks python-dotenv 
