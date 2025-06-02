@@ -20,8 +20,11 @@ tar zxf /tmp/go-linux.tar.gz -C /usr/local/
 export PATH=$PATH:/usr/local/go/bin
 go version
 
-echo 'alias ll="ls -la"' >> ~/.zshrc
+echo 'alias ll="ls -lah"' >> ~/.zshrc
 echo 'alias vi="vim"' >> ~/.zshrc
+echo 'alias gs="git status"' >> ~/.zshrc
+echo 'alias gc="git commit -m"' >> ~/.zshrc
+echo 'alias guc="git commit -am"' >> ~/.zshrc
 echo 'export LANG=zh_CN.UTF-8' >> ~/.zshrc
 echo 'export LANGUAGE=zh_CN.UTF-8' >> ~/.zshrc
 echo 'export SHELL=/bin/zsh' >>~/.zshrc
@@ -66,7 +69,7 @@ cat>~/.local/share/code-server/User/argv.json<<EOF
 EOF
 
 mkdir -p /workspace/.vscode/
-cat>/workspace/.vscode/settings.json<<EOF
+cat>/workspace/.vscode/setting.json<<EOF
 {
     "terminal.integrated.fontSize": 18,
     "workbench.startupEditor": "none",
