@@ -68,9 +68,10 @@ cat>~/.local/share/code-server/User/argv.json<<EOF
 { "locale":"zh-CN" }
 EOF
 
-cat>~/.local/share/code-server/User/setting.json<<EOF
+cat>~/.local/share/code-server/User/settings.json<<EOF
 {
     "terminal.integrated.fontSize": 18,
+    "window.menuBarVisibility": "classic",
     "workbench.startupEditor": "none",
     "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, Courier New, monospace",
     "editor.fontWeight": "normal",
