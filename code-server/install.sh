@@ -1,13 +1,6 @@
 #!/bin/bash
 
-arch() {
-  uname_m=$(uname -m)
-  case $uname_m in
-    aarch64) echo arm64 ;;
-    x86_64) echo amd64 ;;
-    *) echo "$uname_m" ;;
-  esac
-}
+ARCH=$(dpkg --print-architecture)
 
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" 
 chsh -s $(which zsh)
@@ -21,6 +14,12 @@ echo "source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlightin
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
 echo "source ~/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 
+# golang
+curl -o /tmp/go-linux.tar.gz -L "https://go.dev/dl/go1.24.3.linux-${ARCH}.tar.gz"
+tar zxf /tmp/go-linux.tar.gz -C /usr/local/
+export PATH=$PATH:/usr/local/go/bin
+go version
+
 echo 'alias ll="ls -la"' >> ~/.zshrc
 echo 'alias vi="vim"' >> ~/.zshrc
 echo 'export LANG=zh_CN.UTF-8' >> ~/.zshrc
@@ -29,8 +28,12 @@ echo 'export SHELL=/bin/zsh' >>~/.zshrc
 echo 'DRACULA_DISPLAY_CONTEXT=1' >> ~/.zshrc
 echo 'DRACULA_DISPLAY_FULL_CWD=1' >> ~/.zshrc
 echo 'DRACULA_DISPLAY_GIT=1' >> ~/.zshrc
+echo 'export GOPATH=/data/go' >> ~/.zshrc
 echo 'export DENO_DEPLOY_TOKEN=""' >>~/.zshrc
-echo 'cd /data/code-server/workspace' >> ~/.zshrc
+echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.zshrc
+echo 'export PATH=/root/.deno/bin:$PATH' >> ~/.zshrc
+
+curl https://rclone.org/install.sh | zsh
 
 curl -fsSL https://deno.land/install.sh | zsh
 export PATH="/root/.deno/bin:$PATH"
@@ -41,10 +44,9 @@ deployctl --version
 curl -fsSL https://get.pnpm.io/install.sh | zsh -
 export PNPM_HOME="/root/.local/share/pnpm" 
 export PATH="$PNPM_HOME:$PATH"
-pnpm add -g wrangler
 pnpm env use 20 --global
-
-cd ~ && python3 -m venv .venv
+pnpm add -g wrangler@latest
+pnpm add -g eslint
 
 git config --global user.name "henry0731"
 git config --global user.email "henry0731@cmail.uso.edu.kg"
@@ -58,7 +60,71 @@ set wrap
 set ruler
 EOF
 
-mkdir -p ~/code-server
+cat>~/.config/Code/User/locale.json<<EOF
+{ "locale":"zh-CN" }
+EOF
+
+mkdir -p ~/code-server/.vscode/
+
+cat>~/code-server/.vscode/settings.json<<EOF
+{
+    "terminal.integrated.fontSize": 18,
+    "workbench.startupEditor": "none",
+    "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, Courier New, monospace",
+    "editor.fontWeight": "normal",
+    "editor.fontSize": 22,
+    "editor.lineHeight": 1.5,
+    "editor.letterSpacing": 0,
+    "editor.wordWrap": "on",
+    "debug.console.fontSize": 13,
+    "window.commandCenter": false,
+    "workbench.preferredDarkColorTheme": "Dracula Theme",
+    "workbench.preferredLightColorTheme": "Dracula Theme",
+    "workbench.iconTheme": "material-icon-theme",
+    "window.autoDetectColorScheme": true,
+    "workbench.layoutControl.enabled": false,
+    "editor.minimap.enabled": false,
+    "editor.pasteAs.enabled": false,
+    "editor.formatOnSave": true,
+    "eslint.enable": true,
+    "[sh]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 4,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "prettier.bracketSpacing": true,
+    "prettier.endOfLine": "auto"
+}
+EOF
+
+cd ~/code-server && python3 -m venv .venv
 
 apt-get purge make gcc g++ -y
 apt-get autoremove -y

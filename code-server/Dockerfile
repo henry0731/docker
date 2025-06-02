@@ -6,14 +6,15 @@ COPY code-server/install.sh /tmp/install.sh
 RUN apt-get update && apt-get install --no-install-recommends ca-certificates openssh-client procps zsh git unzip vim wget curl net-tools iputils-ping neofetch python3 python3.11-venv -y
 
 RUN curl -fsSL https://code-server.dev/install.sh | sh \
-    && code-server --install-extension redhat.vscode-yaml \
+    && code-server --install-extension ms-python.black-formatter \
     && code-server --install-extension dbaeumer.vscode-eslint \
-    && code-server --install-extension waderyan.gitblame \
-    && code-server --install-extension mhutchie.git-graph \
-    && code-server --install-extension donjayamanne.githistory \
+    && code-server --install-extension esbenp.prettier-vscode \
+    && code-server --install-extension tencent-cloud.coding-copilot \
     && code-server --install-extension dracula-theme.theme-dracula \
     && code-server --install-extension ms-python.python \
     && code-server --install-extension vue.volar \
+    && code-server --install-extension pkief.material-icon-theme \
+    && code-server --install-extension dbaeumer.vscode-eslint \
     && code-server --install-extension ms-ceintl.vscode-language-pack-zh-hans \
     && echo done
 
