@@ -51,6 +51,7 @@ pnpm add -g eslint
 git config --global user.name "henry0731"
 git config --global user.email "henry0731@cmail.uso.edu.kg"
 git config --global pull.rebase false
+git config --global credential.helper "store --file=~/.git/.git-credentials"
 
 cat >~/.vimrc<<EOF
 syntax on
@@ -60,13 +61,11 @@ set wrap
 set ruler
 EOF
 
-cat>~/.config/Code/User/locale.json<<EOF
+cat>~/.local/share/code-server/User/argv.json<<EOF
 { "locale":"zh-CN" }
 EOF
 
-mkdir -p ~/code-server/.vscode/
-
-cat>~/code-server/.vscode/settings.json<<EOF
+cat>~/.local/share/code-server/User/settings.json<<EOF
 {
     "terminal.integrated.fontSize": 18,
     "workbench.startupEditor": "none",
@@ -87,6 +86,9 @@ cat>~/code-server/.vscode/settings.json<<EOF
     "editor.pasteAs.enabled": false,
     "editor.formatOnSave": true,
     "eslint.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
     "[sh]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -124,7 +126,9 @@ cat>~/code-server/.vscode/settings.json<<EOF
 }
 EOF
 
-cd ~/code-server && python3 -m venv .venv
+mkdir -p ~/workspace/.vscode/
+
+cd ~/workspace && python3 -m venv .venv
 
 apt-get purge make gcc g++ -y
 apt-get autoremove -y
