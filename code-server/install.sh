@@ -68,7 +68,7 @@ cat>~/.local/share/code-server/User/argv.json<<EOF
 { "locale":"zh-CN" }
 EOF
 
-cat>~/.local/share/code-server/User/setting.json<<EOF
+cat>~/.local/share/code-server/User/settings.json<<EOF
 {
     "terminal.integrated.fontSize": 18,
     "workbench.startupEditor": "none",
